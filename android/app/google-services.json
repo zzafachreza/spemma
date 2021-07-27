@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "721403854499",
+    "project_id": "spemma-6010b",
+    "storage_bucket": "spemma-6010b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721403854499:android:bc7696714986209ea14916",
+        "android_client_info": {
+          "package_name": "com.spemma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721403854499-2j8dvbupm7r4lc10o575rh6jq4ucosad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGMobGFY2eKv5ob4Ktrtj4DY-w9Rhd9C0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721403854499-2j8dvbupm7r4lc10o575rh6jq4ucosad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
