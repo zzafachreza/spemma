@@ -59,22 +59,40 @@ export default function GetStarted({navigation}) {
       </View>
 
       <MyButton
-        title="LOGIN"
-        Icons="log-in"
+        title="LOGIN SEBAGAI SISWA"
+        Icons="log-in-outline"
         colorText={colors.white}
         warna={colors.secondary}
         iconColor={colors.white}
         onPress={() => navigation.navigate('Login')}
       />
+      <MyGap jarak={20} />
+      <MyButton
+        title="DAFTAR SEBAGAI SISWA"
+        Icons="book-outline"
+        colorText={colors.white}
+        warna={colors.secondary}
+        iconColor={colors.white}
+        onPress={() => navigation.navigate('Register')}
+      />
 
       <MyGap jarak={20} />
       <MyButton
-        title="REGISTER"
+        title="LOGIN SEBAGAI GURU"
+        Icons="log-in"
+        warna={colors.white}
+        iconColor={colors.secondary}
+        colorText={colors.secondary}
+        onPress={() => navigation.navigate('Login2')}
+      />
+      <MyGap jarak={20} />
+      <MyButton
+        title="DAFTAR SEBAGAI GURU"
         Icons="book"
         warna={colors.white}
         iconColor={colors.secondary}
         colorText={colors.secondary}
-        onPress={() => navigation.navigate('Register')}
+        onPress={() => navigation.navigate('Register2')}
       />
 
       <Animated.View style={{height: top}} />

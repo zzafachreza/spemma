@@ -98,26 +98,93 @@ export default function Account({navigation}) {
             // backgroundColor: 'green',
             flex: 1,
           }}>
-          <View
-            style={{
-              marginVertical: 5,
-              padding: 10,
-              backgroundColor: colors.white,
-              borderRadius: 10,
-            }}>
-            <Text
-              style={{
-                fontFamily: fonts.secondary[600],
-              }}>
-              NIS
-            </Text>
-            <Text
-              style={{
-                fontFamily: fonts.secondary[400],
-              }}>
-              {user.nis}
-            </Text>
-          </View>
+          {user.jenis_tendik == 'Guru' || user.jenis_tendik == 'Karyawan' ? (
+            <>
+              <View
+                style={{
+                  marginVertical: 5,
+                  padding: 10,
+                  backgroundColor: colors.white,
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                  }}>
+                  NMB
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                  }}>
+                  {user.nmb}
+                </Text>
+              </View>
+              <View
+                style={{
+                  marginVertical: 5,
+                  padding: 10,
+                  backgroundColor: colors.white,
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                  }}>
+                  Jenis Tendik
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                  }}>
+                  {user.jenis_tendik}
+                </Text>
+              </View>
+            </>
+          ) : (
+            <>
+              <View
+                style={{
+                  marginVertical: 5,
+                  padding: 10,
+                  backgroundColor: colors.white,
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                  }}>
+                  NIS
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                  }}>
+                  {user.nis}
+                </Text>
+              </View>
+              <View
+                style={{
+                  marginVertical: 5,
+                  padding: 10,
+                  backgroundColor: colors.white,
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                  }}>
+                  Kelas
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                  }}>
+                  {user.kelas}
+                </Text>
+              </View>
+            </>
+          )}
           <View
             style={{
               marginVertical: 5,
@@ -178,7 +245,7 @@ export default function Account({navigation}) {
               borderRadius: 10,
               marginBottom: 20,
               padding: 20,
-              margin: 5,
+              margin: 0,
             }}
           />
         </View>

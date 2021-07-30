@@ -15,6 +15,8 @@ export default function MyPicker({
   secureTextEntry,
   styleInput,
   placeholder,
+  LabelColor,
+  listColor,
   label2,
   styleLabel,
   colorIcon = colors.primary,
@@ -32,7 +34,7 @@ export default function MyPicker({
         <Text
           style={{
             fontFamily: fonts.secondary[600],
-            color: colors.primary,
+            color: LabelColor,
             left: 10,
             fontSize: 16,
             ...styleLabel,
@@ -53,9 +55,21 @@ export default function MyPicker({
           {label2}
         </Text>
       )}
-      <Picker selectedValue={value} onValueChange={onValueChange}>
+      <Picker
+        style={{
+          backgroundColor: 'red',
+        }}
+        // mode="dropdown"
+        selectedValue={value}
+        onValueChange={onValueChange}>
         {data.map(item => {
-          return <Picker.Item value={item.value} label={item.label} />;
+          return (
+            <Picker.Item
+              color={listColor}
+              value={item.value}
+              label={item.label}
+            />
+          );
         })}
       </Picker>
     </>

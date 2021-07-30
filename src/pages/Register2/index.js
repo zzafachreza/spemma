@@ -17,16 +17,15 @@ import axios from 'axios';
 import {showMessage} from 'react-native-flash-message';
 import LottieView from 'lottie-react-native';
 
-export default function Register({navigation}) {
+export default function Register2({navigation}) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     nama_lengkap: null,
-    nis: null,
+    nmb: null,
     email: null,
+    jenis_tendik: 'Guru',
     password: null,
     telepon: null,
-    waortu: null,
-    kelas: '7A',
     alamat: null,
   });
 
@@ -37,7 +36,7 @@ export default function Register({navigation}) {
     setLoading(true);
     console.log(data);
     axios
-      .post('https://zavalabs.com/spemma/api/register.php', data)
+      .post('https://zavalabs.com/spemma/api/register2.php', data)
       .then(res => {
         console.log(res);
         let err = res.data.split('#');
@@ -117,13 +116,13 @@ export default function Register({navigation}) {
           colorIcon={colors.white}
           borderColor={colors.white}
           labelColor={colors.white}
-          label="NIS"
+          label="NMB"
           iconname="card-outline"
-          value={data.nis}
+          value={data.nmb}
           onChangeText={value =>
             setData({
               ...data,
-              nis: value,
+              nmb: value,
             })
           }
         />
@@ -132,114 +131,26 @@ export default function Register({navigation}) {
           onValueChange={val =>
             setData({
               ...data,
-              kelas: val,
+              jenis_tendik: val,
             })
           }
-          value={data.kelas}
+          value={data.jenis_tendik}
           LabelColor={colors.white}
-          iconname="home-outline"
+          iconname="people-outline"
           colorIcon={colors.white}
           styleInput={{
             color: isEnabled ? colors.white : colors.black,
           }}
           // listColor={colors.white}
-          label="Kelas"
+          label="Jenis Tendik"
           data={[
             {
-              label: '7A',
-              value: '7A',
+              label: 'Guru',
+              value: 'Guru',
             },
             {
-              label: '7B',
-              value: '7B',
-            },
-            {
-              label: '7C',
-              value: '7C',
-            },
-            {
-              label: '7D',
-              value: '7D',
-            },
-            {
-              label: '7E',
-              value: '7E',
-            },
-            {
-              label: '7F',
-              value: '7F',
-            },
-            {
-              label: '7G',
-              value: '7G',
-            },
-            {
-              label: '7H',
-              value: '7H',
-            },
-            {
-              label: '8A',
-              value: '8A',
-            },
-            {
-              label: '8B',
-              value: '8B',
-            },
-            {
-              label: '8C',
-              value: '8C',
-            },
-            {
-              label: '8D',
-              value: '8D',
-            },
-            {
-              label: '8E',
-              value: '8E',
-            },
-            {
-              label: '8F',
-              value: '8F',
-            },
-            {
-              label: '8G',
-              value: '8G',
-            },
-            {
-              label: '8H',
-              value: '8H',
-            },
-            {
-              label: '9A',
-              value: '9A',
-            },
-            {
-              label: '9B',
-              value: '9B',
-            },
-            {
-              label: '9C',
-              value: '9C',
-            },
-            {
-              label: '9D',
-              value: '9D',
-            },
-            {
-              label: '9E',
-              value: '9E',
-            },
-            {
-              label: '9F',
-              value: '9F',
-            },
-            {
-              label: '9G',
-              value: '9G',
-            },
-            {
-              label: '9H',
-              value: '9H',
+              label: 'Karyawan',
+              value: 'Karyawan',
             },
           ]}
         />
@@ -281,24 +192,7 @@ export default function Register({navigation}) {
           }
         />
         <MyGap jarak={5} />
-        <MyInput
-          styleInput={{
-            color: isEnabled ? colors.white : colors.black,
-          }}
-          colorIcon={colors.white}
-          borderColor={colors.white}
-          labelColor={colors.white}
-          label="Telepon / Whastapp Orang Tua"
-          iconname="logo-whatsapp"
-          value={data.waortu}
-          onChangeText={value =>
-            setData({
-              ...data,
-              waortu: value,
-            })
-          }
-        />
-        <MyGap jarak={5} />
+
         <MyInput
           styleInput={{
             color: isEnabled ? colors.white : colors.black,

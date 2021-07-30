@@ -42,19 +42,29 @@ import {
   MaterialReport,
   MaterialReportDetail,
   Camera,
+  Login2,
+  Register2,
+  Kartu,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
 import {colors} from '../utils/colors';
+import {getData} from '../utils/localStorage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const MainApp = () => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    getData('user').then(res => {
+      setUser(res);
+    });
+  }, []);
   return (
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Camera" component={Camera} />
+      {user.nis && <Tab.Screen name="Kartu" component={Kartu} />}
       {/* <Tab.Screen name="Chat" component={Chat} /> */}
       {/* <Tab.Screen name="Notifikasi" component={Notifikasi} /> */}
       <Tab.Screen name="Account" component={Account} />
@@ -165,6 +175,31 @@ export default function Router() {
           },
         }}
       />
+
+      <Stack.Screen
+        name="Login2"
+        component={Login2}
+        options={{
+          headerTitle: 'Login Guru',
+          headerShown: false,
+
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        }}
+      />
+
       <Stack.Screen
         name="Register"
         component={Register}
@@ -191,6 +226,61 @@ export default function Router() {
           },
         }}
       />
+
+      <Stack.Screen
+        name="Register2"
+        component={Register2}
+        options={{
+          headerTitle: 'Register Guru',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="Kartu"
+        component={Kartu}
+        options={{
+          headerTitle: 'Kartu',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        }}
+      />
+
       <Stack.Screen
         name="MainApp"
         component={MainApp}

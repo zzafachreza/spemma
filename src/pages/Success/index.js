@@ -57,9 +57,9 @@ export default function Success({navigation, route}) {
           padding: 10,
         }}>
         <MyButton
-          title="MASUK SEKARANG"
+          title="KEMBALI"
           warna={colors.secondary}
-          onPress={() => navigation.replace('Login')}
+          onPress={() => navigation.replace('GetStarted')}
         />
       </View>
     </SafeAreaView>

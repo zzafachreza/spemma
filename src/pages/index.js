@@ -35,11 +35,16 @@ import MaterialReportDetail from './MaterialReportDetail';
 import MaterialReport from './MaterialReport';
 import Camera from './Camera';
 
+import Login2 from './Login2';
+import Register2 from './Register2';
+import Kartu from './Kartu';
+
 export {
   Splash,
   GetStarted,
   Register,
   Login,
+  Kartu,
   Home,
   Account,
   Success,
@@ -69,4 +74,6 @@ export {
   MaterialReturn,
   MaterialReportDetail,
   Camera,
+  Login2,
+  Register2,
 };

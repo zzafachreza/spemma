@@ -18,13 +18,13 @@ import axios from 'axios';
 import {storeData, getData} from '../../utils/localStorage';
 import {showMessage} from 'react-native-flash-message';
 
-export default function Login({navigation}) {
+export default function Login2({navigation}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState('');
   const [data, setData] = useState({
-    nis: null,
+    email: null,
     password: null,
   });
 
@@ -44,7 +44,7 @@ export default function Login({navigation}) {
     console.log(data);
     setTimeout(() => {
       axios
-        .post('https://zavalabs.com/spemma/api/login.php', data)
+        .post('https://zavalabs.com/spemma/api/login2.php', data)
         .then(res => {
           console.log(res.data);
           setLoading(false);
@@ -131,7 +131,7 @@ export default function Login({navigation}) {
                 color: isEnabled ? colors.white : colors.black,
                 // maxWidth: 230,
               }}>
-              SPEMMA [ SISWA ]
+              SPEMMA [ GURU ]
             </Text>
           </Text>
 
@@ -143,13 +143,13 @@ export default function Login({navigation}) {
             colorIcon={colors.white}
             borderColor={colors.white}
             labelColor={colors.white}
-            label="NIS"
-            iconname="card-outline"
-            value={data.nis}
+            label="E - mail"
+            iconname="mail-outline"
+            value={data.email}
             onChangeText={value =>
               setData({
                 ...data,
-                nis: value,
+                email: value,
               })
             }
           />

@@ -168,39 +168,75 @@ export default function Home({navigation}) {
               flex: 1,
               marginTop: windowHeight / 30,
             }}>
-            <TouchableOpacity
-              style={{
-                padding: 10,
-                backgroundColor: '#25DBDB',
-                borderRadius: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../assets/aik.png')}
+            {user.jenis_tendik == 'Guru' || user.jenis_tendik == 'Karyawan' ? (
+              <TouchableOpacity
                 style={{
-                  width: '100%',
-                  resizeMode: 'contain',
-                  height: 70,
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[600],
-                  fontSize: windowWidth / 15,
-                  color: colors.white,
+                  padding: 10,
+                  backgroundColor: '#25DBDB',
+                  borderRadius: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}>
-                AIK
-              </Text>
-              <Text
+                <Image
+                  source={require('../../assets/presensi.png')}
+                  style={{
+                    width: '100%',
+                    resizeMode: 'contain',
+                    height: 70,
+                  }}
+                />
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                    fontSize: windowWidth / 15,
+                    color: colors.white,
+                  }}>
+                  PRESENSI GURU
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                    fontSize: windowWidth / 25,
+                    color: colors.white,
+                  }}>
+                  PRESENSI
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
                 style={{
-                  fontFamily: fonts.secondary[400],
-                  fontSize: windowWidth / 25,
-                  color: colors.white,
+                  padding: 10,
+                  backgroundColor: '#25DBDB',
+                  borderRadius: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}>
-                Input Data AIK
-              </Text>
-            </TouchableOpacity>
+                <Image
+                  source={require('../../assets/aik.png')}
+                  style={{
+                    width: '100%',
+                    resizeMode: 'contain',
+                    height: 70,
+                  }}
+                />
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[600],
+                    fontSize: windowWidth / 15,
+                    color: colors.white,
+                  }}>
+                  AIK
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.secondary[400],
+                    fontSize: windowWidth / 25,
+                    color: colors.white,
+                  }}>
+                  Input Data AIK
+                </Text>
+              </TouchableOpacity>
+            )}
             <MyGap jarak={15} />
             <TouchableOpacity
               style={{
