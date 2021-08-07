@@ -13,7 +13,7 @@ import {getData} from '../../utils/localStorage';
 import {windowWidth, fonts} from '../../utils/fonts';
 import QRCode from 'react-native-qrcode-svg';
 
-export default function Kartu({route}) {
+export default function Kartu2({route}) {
   const [user, setUser] = useState({});
   const [visible, setVisible] = useState(true);
 
@@ -53,7 +53,7 @@ export default function Kartu({route}) {
             justifyContent: 'center',
             alignItems: 'center',
             padding: 5,
-            backgroundColor: colors.primary,
+            backgroundColor: colors.secondary,
           }}>
           <Text
             style={{
@@ -61,7 +61,7 @@ export default function Kartu({route}) {
               fontSize: windowWidth / 18,
               color: colors.white,
             }}>
-            KARTU PELAJAR
+            KARTU PEGAWAI
           </Text>
         </View>
         {/* nama */}
@@ -81,14 +81,14 @@ export default function Kartu({route}) {
                   fontFamily: fonts.secondary[400],
                   fontSize: windowWidth / 25,
                 }}>
-                {user.kelas}
+                {user.jenis_tendik}
               </Text>
               <Text
                 style={{
                   fontFamily: fonts.secondary[400],
                   fontSize: windowWidth / 25,
                 }}>
-                {user.nis}
+                {user.nmb}
               </Text>
             </View>
             <View
@@ -136,7 +136,7 @@ export default function Kartu({route}) {
             justifyContent: 'center',
             alignItems: 'center',
             padding: 5,
-            backgroundColor: colors.primary,
+            backgroundColor: colors.secondary,
           }}>
           <Text
             style={{

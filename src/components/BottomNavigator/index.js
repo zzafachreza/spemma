@@ -66,6 +66,8 @@ export default function BottomNavigator({state, descriptors, navigation}) {
           iconName = 'camera-outline';
         } else if (label === 'Kartu') {
           iconName = 'card-outline';
+        } else if (label === 'Kartu2') {
+          iconName = 'card-outline';
         }
 
         return (

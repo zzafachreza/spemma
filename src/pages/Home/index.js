@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback,
   Linking,
+  TouchableHighlight,
 } from 'react-native';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
@@ -102,31 +103,38 @@ export default function Home({navigation}) {
             flexDirection: 'row',
           }}>
           <View style={{flex: 1}}>
-            <Text
-              style={{
-                fontSize: windowWidth / 25,
-                color: colors.black,
-                fontFamily: fonts.secondary[400],
-              }}>
-              Selamat datang,
-            </Text>
-
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon
-                type="ionicon"
-                size={windowWidth / 22}
-                name="person"
-                color={colors.black}
-              />
-              <Text
-                style={{
-                  left: 10,
-                  fontSize: windowWidth / 22,
-                  color: colors.black,
-                  fontFamily: fonts.secondary[600],
-                }}>
-                {user.nama_lengkap}
-              </Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Account')}>
+                <Image
+                  source={{
+                    uri:
+                      user.foto == ''
+                        ? 'https://zavalabs.com/nogambar.jpg'
+                        : user.foto,
+                  }}
+                  style={{width: 70, height: 70, borderRadius: 35}}
+                />
+              </TouchableOpacity>
+              <View>
+                <Text
+                  style={{
+                    left: 10,
+                    fontSize: windowWidth / 25,
+                    color: colors.black,
+                    fontFamily: fonts.secondary[400],
+                  }}>
+                  Selamat datang,
+                </Text>
+                <Text
+                  style={{
+                    left: 10,
+                    fontSize: windowWidth / 22,
+                    color: colors.black,
+                    fontFamily: fonts.secondary[600],
+                  }}>
+                  {user.nama_lengkap}
+                </Text>
+              </View>
             </View>
             <View
               style={{
@@ -239,6 +247,11 @@ export default function Home({navigation}) {
             )}
             <MyGap jarak={15} />
             <TouchableOpacity
+              onPress={() =>
+                Linking.openURL(
+                  'https://play.google.com/store/apps/details?id=com.microsoft.teams&hl=in&gl=US',
+                )
+              }
               style={{
                 padding: 10,
                 backgroundColor: colors.white,

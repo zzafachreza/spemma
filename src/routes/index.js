@@ -45,6 +45,9 @@ import {
   Login2,
   Register2,
   Kartu,
+  EditProfile,
+  EditProfile2,
+  Kartu2,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -65,6 +68,7 @@ const MainApp = () => {
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
       {user.nis && <Tab.Screen name="Kartu" component={Kartu} />}
+      {user.nmb && <Tab.Screen name="Kartu2" component={Kartu2} />}
       {/* <Tab.Screen name="Chat" component={Chat} /> */}
       {/* <Tab.Screen name="Notifikasi" component={Notifikasi} /> */}
       <Tab.Screen name="Account" component={Account} />
@@ -177,6 +181,54 @@ export default function Router() {
       />
 
       <Stack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{
+          headerTitle: 'Edit Profile',
+          headerShown: false,
+
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="EditProfile2"
+        component={EditProfile2}
+        options={{
+          headerTitle: 'Edit Profile',
+          headerShown: false,
+
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        }}
+      />
+
+      <Stack.Screen
         name="Login2"
         component={Login2}
         options={{
@@ -257,6 +309,33 @@ export default function Router() {
       <Stack.Screen
         name="Kartu"
         component={Kartu}
+        options={{
+          headerTitle: 'Kartu',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="Kartu2"
+        component={Kartu2}
         options={{
           headerTitle: 'Kartu',
           headerTintColor: 'white',
