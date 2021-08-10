@@ -212,6 +212,7 @@ export default function Home({navigation}) {
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
+                onPress={() => navigation.navigate('Aik', user)}
                 style={{
                   padding: 10,
                   backgroundColor: '#25DBDB',

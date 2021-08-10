@@ -48,6 +48,7 @@ import {
   EditProfile,
   EditProfile2,
   Kartu2,
+  Aik,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -338,6 +339,33 @@ export default function Router() {
         component={Kartu2}
         options={{
           headerTitle: 'Kartu',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="Aik"
+        component={Aik}
+        options={{
+          headerTitle: 'AIK',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,

@@ -41,7 +41,7 @@ import Kartu from './Kartu';
 import Kartu2 from './Kartu2';
 import EditProfile from './EditProfile';
 import EditProfile2 from './EditProfile2';
-
+import Aik from './Aik';
 export {
   Splash,
   GetStarted,
@@ -82,4 +82,5 @@ export {
   EditProfile,
   EditProfile2,
   Kartu2,
+  Aik,
 };
