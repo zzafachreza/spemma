@@ -178,6 +178,7 @@ export default function Home({navigation}) {
             }}>
             {user.jenis_tendik == 'Guru' || user.jenis_tendik == 'Karyawan' ? (
               <TouchableOpacity
+                onPress={() => navigation.navigate('Absen', user)}
                 style={{
                   padding: 10,
                   backgroundColor: '#25DBDB',

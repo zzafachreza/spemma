@@ -25,17 +25,17 @@ export default function Splash({navigation}) {
   const requestCameraPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
-          title: 'Izinkan Untuk Download Report',
+          title: 'Izinkan Untuk Membaca Lokasi',
           buttonNegative: 'Cancel',
           buttonPositive: 'OK',
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('You can use the camera');
+        console.log('Sekarang kamu bisa pakai palikasi');
       } else {
-        console.log('Camera permission denied');
+        console.log('Lokasi Wajib di izinakn');
       }
     } catch (err) {
       console.warn(err);

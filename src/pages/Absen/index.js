@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -12,13 +12,15 @@ import {MyInput, MyGap, MyButton, MyPicker} from '../../components';
 import {colors} from '../../utils/colors';
 import DatePicker from 'react-native-date-picker';
 import {Icon} from 'react-native-elements';
-import {fonts} from '../../utils/fonts';
+import {fonts, windowWidth} from '../../utils/fonts';
 import axios from 'axios';
 import {showMessage} from 'react-native-flash-message';
 import LottieView from 'lottie-react-native';
+import Geolocation from '@react-native-community/geolocation';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
-export default function Aik({navigation, route}) {
+export default function Absen({navigation, route}) {
   const [foto, setfoto] = useState('https://zavalabs.com/nogambar.jpg');
 
   const options = {
@@ -77,45 +79,84 @@ export default function Aik({navigation, route}) {
     });
   };
 
+  const addZero = i => {
+    if (i < 10) {
+      i = '0' + i;
+    }
+    return i;
+  };
+
   const Today = new Date();
   const dd = String(Today.getDate()).padStart(2, '0');
   const mm = String(Today.getMonth() + 1).padStart(2, '0'); //January is 0!
   const yyyy = Today.getFullYear();
   const today = `${yyyy}-${mm}-${dd}`;
+  const jam = addZero(Today.getHours());
+  const menit = addZero(Today.getMinutes());
+  const detik = addZero(Today.getSeconds());
+  const waktu = `${jam}:${menit}:${detik}`;
 
   const [date, setDate] = useState(Today);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(route.params);
+  const [show, setShow] = useState(true);
 
   const [kirim, setKirim] = useState({
     id_member: user.id,
-    tanggal: date,
-    nama_lengkap: user.nama_lengkap,
-    shalat: 'SUBUH',
-    quran: null,
-    sunnah: 'TAHAJUD',
-    foto: 'https://zavalabs.com/nogambar.jpg',
-    amal: null,
+    nmb: user.nmb,
+    tanggal: today,
+    jam: waktu,
+    tipe: 'MASUK',
+    // latitude: null,
+    // longitude: null,
+    jurnal: null,
   });
 
-  const sendServer = () => {
-    console.log('krim', kirim);
-    setLoading(true);
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    const Today = new Date(currentDate);
+    const jam = addZero(Today.getHours());
+    const menit = addZero(Today.getMinutes());
+    const detik = addZero(Today.getSeconds());
+    const waktu = `${jam}:${menit}:${detik}`;
+    setKirim({
+      ...kirim,
+      jam: waktu,
+    });
+    setShow(false);
+  };
 
-    console.log('kirim server', kirim);
-    axios
-      .post('https://zavalabs.com/spemma/api/aik_add.php', kirim)
-      .then(res => {
-        console.log(res);
-        setTimeout(() => {
-          setLoading(false);
-          navigation.replace('MainApp');
-        }, 1000);
-        showMessage({
-          type: 'success',
-          message: 'Data berhasil disimpan !',
+  const sendServer = () => {
+    Geolocation.getCurrentPosition(position => {
+      console.log(JSON.stringify(position));
+
+      axios
+        .post('https://zavalabs.com/spemma/api/absen_add.php', {
+          ...kirim,
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data == 200) {
+            setTimeout(() => {
+              setLoading(false);
+              navigation.replace('MainApp');
+              showMessage({
+                type: 'success',
+                message: 'Absen Berhasil !',
+              });
+            }, 1000);
+          } else {
+            showMessage({
+              type: 'danger',
+              message: res.data,
+            });
+          }
         });
-      });
+
+      console.log('get lokasi', position.coords);
+    });
   };
 
   const [isEnabled, setIsEnabled] = useState(false);
@@ -198,7 +239,7 @@ export default function Aik({navigation, route}) {
               }}>
               <Icon
                 type="ionicon"
-                name="calendar-outline"
+                name="alarm-outline"
                 color={colors.primary}
                 size={16}
               />
@@ -209,14 +250,41 @@ export default function Aik({navigation, route}) {
                   left: 10,
                   fontSize: 16,
                 }}>
-                Tanggal
+                Jam
               </Text>
             </View>
-            <DatePicker
+            <View
+              style={{
+                padding: 20,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.black,
+                  left: 10,
+                  fontSize: windowWidth / 6,
+                }}>
+                {kirim.jam}
+              </Text>
+            </View>
+            {show && (
+              <DateTimePicker
+                value={date}
+                mode={'time'}
+                is24Hour={true}
+                display="default"
+                onChange={onChange}
+              />
+            )}
+            {/* <DatePicker
               style={{
                 backgroundColor: isEnabled ? colors.white : colors.white,
               }}
-              mode="date"
+              mode="time"
+              display="clock"
+              is24Hour={true}
               date={date}
               onDateChange={val => {
                 const Today = val;
@@ -224,13 +292,17 @@ export default function Aik({navigation, route}) {
                 const mm = String(Today.getMonth() + 1).padStart(2, '0'); //January is 0!
                 const yyyy = Today.getFullYear();
                 const today = `${yyyy}-${mm}-${dd}`;
+                const jam = addZero(Today.getHours());
+                const menit = addZero(Today.getMinutes());
+                const detik = addZero(Today.getSgeteconds());
+                const waktu = `${jam}:${menit}:${detik}`;
 
                 setKirim({
                   ...kirim,
-                  tanggal: today,
+                  jam: waktu,
                 });
               }}
-            />
+            /> */}
           </View>
 
           <MyGap jarak={10} />
@@ -241,111 +313,47 @@ export default function Aik({navigation, route}) {
               borderRadius: 10,
             }}>
             <MyPicker
-              value={kirim.jenis_material}
-              onValueChange={val =>
+              value={kirim.tipe}
+              onValueChange={val => {
                 setKirim({
                   ...kirim,
-                  jenis_material: val,
-                })
-              }
+                  tipe: val,
+                });
+                setShow(false);
+              }}
               iconname="grid-outline"
-              label="Shalat"
+              label="Tipe Absen"
               data={[
                 {
-                  label: 'SUBUH',
-                  value: 'SUBUH',
+                  label: 'MASUK',
+                  value: 'MASUK',
                 },
                 {
-                  label: 'DUHUR',
-                  value: 'DUHUR',
-                },
-                {
-                  label: 'ASAR',
-                  value: 'ASAR',
-                },
-                {
-                  label: 'MAGRIB',
-                  value: 'MAGRIB',
-                },
-                {
-                  label: 'ISYAK',
-                  value: 'ISYAK',
+                  label: 'PULANG',
+                  value: 'PULANG',
                 },
               ]}
             />
           </View>
 
           <MyGap jarak={10} />
-          <MyInput
-            styleInput={{
-              color: isEnabled ? colors.white : colors.black,
-            }}
-            label="Saya membaca al-qur'an "
-            iconname="book-outline"
-            value={kirim.quran}
-            onChangeText={val =>
-              setKirim({
-                ...kirim,
-                quran: val,
-              })
-            }
-          />
-          <MyGap jarak={10} />
-
-          <View
-            style={{
-              backgroundColor: colors.white,
-              borderRadius: 10,
-            }}>
-            <MyPicker
-              value={kirim.sunnah}
-              onValueChange={val =>
+          {kirim.tipe == 'PULANG' && (
+            <MyInput
+              styleInput={{
+                color: isEnabled ? colors.white : colors.black,
+              }}
+              label="Jurnal Guru / Karyawan "
+              iconname="book-outline"
+              value={kirim.jurnal}
+              onChangeText={val =>
                 setKirim({
                   ...kirim,
-                  sunnah: val,
+                  jurnal: val,
                 })
               }
-              iconname="shield-checkmark-outline"
-              label="Shalat Sunnah"
-              data={[
-                {
-                  label: 'TAHAJUD',
-                  value: 'TAHAJUD',
-                },
-                {
-                  label: 'DHUHA',
-                  value: 'DHUHA',
-                },
-                {
-                  label: 'SUNNAH RAWATIB',
-                  value: 'SUNNAH RAWATIB',
-                },
-              ]}
             />
-          </View>
+          )}
 
-          <MyGap jarak={10} />
-          <UploadFoto
-            onPress1={() => getCamera(1)}
-            onPress2={() => getGallery(1)}
-            label="Upload Amal Baiku"
-            foto={foto}
-          />
-          <MyGap jarak={10} />
-          <MyInput
-            styleInput={{
-              color: isEnabled ? colors.white : colors.black,
-            }}
-            label="Keterangan Amal Baikku"
-            iconname="book-outline"
-            value={kirim.amal}
-            onChangeText={val =>
-              setKirim({
-                ...kirim,
-                amal: val,
-              })
-            }
-          />
           <MyGap jarak={10} />
           <MyButton
             title="SIMPAN"
