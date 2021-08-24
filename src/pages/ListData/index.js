@@ -74,67 +74,6 @@ export default function ListData({navigation}) {
           flex: 1,
         }}>
         {data.map(item => {
-          const MyStatus = () => {
-            if (item.kondisi_material == 'RETURN') {
-              return (
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    flexDirection: 'row',
-                  }}>
-                  <Text
-                    style={{
-                      // borderBottomRightRadius: 10,
-                      backgroundColor: colors.black,
-                      fontFamily: fonts.secondary[600],
-                      fontSize: windowWidth / 30,
-                      color: colors.white,
-                      padding: 10,
-                    }}>
-                    {item.kondisi_material}
-                  </Text>
-                  <View
-                    style={{
-                      justifyContent: 'center',
-                      flex: 1,
-                      paddingLeft: 5,
-                    }}>
-                    <Text
-                      style={{
-                        color: colors.black,
-                        fontFamily: fonts.secondary[400],
-                      }}>
-                      ( {item.alasan_return} )
-                    </Text>
-                  </View>
-                </View>
-              );
-            } else {
-              return (
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                  }}>
-                  <Text
-                    style={{
-                      // borderBottomRightRadius: 10,
-                      backgroundColor: colors.black,
-                      fontFamily: fonts.secondary[600],
-                      fontSize: windowWidth / 30,
-                      color: colors.white,
-                      padding: 10,
-                    }}>
-                    {item.kondisi_material}
-                  </Text>
-                </View>
-              );
-            }
-          };
-
           return (
             <View
               key={item.id}
@@ -154,14 +93,14 @@ export default function ListData({navigation}) {
                       fontSize: windowWidth / 30,
                       color: colors.black,
                     }}>
-                    Nama Penerima :{' '}
+                    Shalat Wajib:{' '}
                     <Text
                       style={{
                         fontFamily: fonts.secondary[600],
                         fontSize: windowWidth / 30,
                         color: colors.primary,
                       }}>
-                      {item.nama_penerima}
+                      {item.shalat}
                     </Text>
                   </Text>
                   <Text
@@ -170,23 +109,31 @@ export default function ListData({navigation}) {
                       fontSize: windowWidth / 30,
                       color: colors.black,
                     }}>
-                    Nama Pengirim :{' '}
+                    Shalat Sunnah :{' '}
                     <Text
                       style={{
                         fontFamily: fonts.secondary[600],
                         fontSize: windowWidth / 30,
-                        color: colors.primary,
+                        color: colors.secondary,
                       }}>
-                      {item.nama_pengirim}
+                      {item.sunnah}
                     </Text>
                   </Text>
                   <Text
                     style={{
-                      fontFamily: fonts.secondary[400],
+                      fontFamily: fonts.secondary[600],
                       fontSize: windowWidth / 30,
                       color: colors.black,
                     }}>
-                    {item.nama_material}
+                    Baca Quran :{' '}
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                        color: colors.black,
+                      }}>
+                      {item.quran}
+                    </Text>
                   </Text>
                   <Text
                     style={{
@@ -194,15 +141,7 @@ export default function ListData({navigation}) {
                       fontSize: windowWidth / 30,
                       color: colors.primary,
                     }}>
-                    {item.kode_material} -{' '}
-                    <Text
-                      style={{
-                        fontFamily: fonts.secondary[600],
-                        fontSize: windowWidth / 30,
-                        color: colors.black,
-                      }}>
-                      {item.jenis_material}
-                    </Text>
+                    {item.amal}
                   </Text>
                   <Text
                     style={{
@@ -210,30 +149,10 @@ export default function ListData({navigation}) {
                     }}>
                     {item.tanggal}
                   </Text>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[400],
-                      fontSize: windowWidth / 30,
-                    }}>
-                    Jumlah :{' '}
-                    <Text
-                      style={{
-                        fontFamily: fonts.secondary[600],
-                        fontSize: windowWidth / 30,
-                        color: colors.primary,
-                      }}>
-                      {item.jumlah_material}
-                    </Text>
-                  </Text>
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
-                  <MyStatus />
-                  <View
-                    style={{
-                      justifyContent: 'flex-end',
-                      alignItems: 'flex-end',
-                    }}>
+                <View style={{flex: 1}}>
+                  <View style={{}}>
                     <TouchableOpacity
                       onPress={() => {
                         axios
@@ -247,6 +166,9 @@ export default function ListData({navigation}) {
                             axios
                               .post(
                                 'https://zavalabs.com/spemma/api/transaksi.php',
+                                {
+                                  id_member: user.id,
+                                },
                               )
                               .then(res => {
                                 console.log(res.data);
@@ -272,22 +194,6 @@ export default function ListData({navigation}) {
                   </View>
                 </View>
               </TouchableOpacity>
-
-              {item.status === 'SELESAI' && (
-                <View style={{flexDirection: 'row'}}>
-                  <Text
-                    style={{
-                      flex: 1,
-                      backgroundColor: colors.primary,
-                      color: colors.white,
-                      padding: 10,
-                      fontFamily: fonts.secondary[600],
-                      textAlign: 'center',
-                    }}>
-                    SELESAI
-                  </Text>
-                </View>
-              )}
             </View>
           );
         })}

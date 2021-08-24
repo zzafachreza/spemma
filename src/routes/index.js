@@ -55,6 +55,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
 import {colors} from '../utils/colors';
 import {getData} from '../utils/localStorage';
+import Nilai from '../pages/Nilai';
+import {Icon} from 'react-native-elements';
+import {fonts} from '../utils/fonts';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -363,10 +366,10 @@ export default function Router() {
       />
 
       <Stack.Screen
-        name="Aik"
-        component={Aik}
+        name="Nilai"
+        component={Nilai}
         options={{
-          headerTitle: 'AIK',
+          headerTitle: 'Penilaian Diri',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
@@ -387,6 +390,49 @@ export default function Router() {
             };
           },
         }}
+      />
+
+      <Stack.Screen
+        name="Aik"
+        component={Aik}
+        options={({route, navigation}) => ({
+          title: 'Input Data AIK',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ListData')}
+              style={{
+                marginRight: 20,
+              }}>
+              <Icon type="ionicon" name="list" color={colors.white} />
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.white,
+                }}>
+                Data AIK
+              </Text>
+            </TouchableOpacity>
+          ),
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
       />
 
       <Stack.Screen

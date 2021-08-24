@@ -177,148 +177,191 @@ export default function Home({navigation}) {
               marginTop: windowHeight / 30,
             }}>
             {user.jenis_tendik == 'Guru' || user.jenis_tendik == 'Karyawan' ? (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Absen', user)}
-                style={{
-                  padding: 10,
-                  backgroundColor: '#25DBDB',
-                  borderRadius: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  source={require('../../assets/presensi.png')}
+              <>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Absen', user)}
                   style={{
-                    width: '100%',
-                    resizeMode: 'contain',
-                    height: 70,
-                  }}
-                />
-                <Text
-                  style={{
-                    fontFamily: fonts.secondary[600],
-                    fontSize: windowWidth / 15,
-                    color: colors.white,
+                    padding: 10,
+                    backgroundColor: '#25DBDB',
+                    borderRadius: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}>
-                  PRESENSI GURU
-                </Text>
-                <Text
+                  <Image
+                    source={require('../../assets/presensi.png')}
+                    style={{
+                      width: '100%',
+                      resizeMode: 'contain',
+                      height: 70,
+                    }}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[600],
+                      fontSize: windowWidth / 15,
+                      color: colors.white,
+                    }}>
+                    PRESENSI GURU
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[400],
+                      fontSize: windowWidth / 25,
+                      color: colors.white,
+                    }}>
+                    PRESENSI
+                  </Text>
+                </TouchableOpacity>
+                <MyGap jarak={15} />
+                <TouchableOpacity
+                  onPress={() =>
+                    Linking.openURL(
+                      'https://play.google.com/store/apps/details?id=com.microsoft.teams&hl=in&gl=US',
+                    )
+                  }
                   style={{
-                    fontFamily: fonts.secondary[400],
-                    fontSize: windowWidth / 25,
-                    color: colors.white,
+                    padding: 10,
+                    backgroundColor: colors.white,
+                    borderRadius: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}>
-                  PRESENSI
-                </Text>
-              </TouchableOpacity>
+                  <Image
+                    source={require('../../assets/team.png')}
+                    style={{
+                      width: '100%',
+                      resizeMode: 'contain',
+                    }}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[600],
+                      fontSize: windowWidth / 15,
+                      color: colors.secondary,
+                    }}>
+                    TEAMS
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[400],
+                      fontSize: windowWidth / 25,
+                      color: colors.secondary,
+                    }}>
+                    Silahkan masuk ke Teams
+                  </Text>
+                </TouchableOpacity>
+              </>
             ) : (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Aik', user)}
-                style={{
-                  padding: 10,
-                  backgroundColor: '#25DBDB',
-                  borderRadius: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  source={require('../../assets/aik.png')}
+              <>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Aik', user)}
                   style={{
-                    width: '100%',
-                    resizeMode: 'contain',
-                    height: 70,
-                  }}
-                />
-                <Text
-                  style={{
-                    fontFamily: fonts.secondary[600],
-                    fontSize: windowWidth / 15,
-                    color: colors.white,
+                    padding: 10,
+                    backgroundColor: '#25DBDB',
+                    borderRadius: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}>
-                  AIK
-                </Text>
-                <Text
+                  <Image
+                    source={require('../../assets/aik.png')}
+                    style={{
+                      width: '100%',
+                      resizeMode: 'contain',
+                      height: 70,
+                    }}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[600],
+                      fontSize: windowWidth / 15,
+                      color: colors.white,
+                    }}>
+                    AIK
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[400],
+                      fontSize: windowWidth / 25,
+                      color: colors.white,
+                    }}>
+                    Input Data AIK
+                  </Text>
+                </TouchableOpacity>
+                <MyGap jarak={15} />
+                <TouchableOpacity
+                  onPress={() =>
+                    Linking.openURL(
+                      'https://play.google.com/store/apps/details?id=com.microsoft.teams&hl=in&gl=US',
+                    )
+                  }
                   style={{
-                    fontFamily: fonts.secondary[400],
-                    fontSize: windowWidth / 25,
-                    color: colors.white,
+                    padding: 10,
+                    backgroundColor: colors.white,
+                    borderRadius: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}>
-                  Input Data AIK
-                </Text>
-              </TouchableOpacity>
+                  <Image
+                    source={require('../../assets/team.png')}
+                    style={{
+                      width: '100%',
+                      resizeMode: 'contain',
+                    }}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[600],
+                      fontSize: windowWidth / 15,
+                      color: colors.secondary,
+                    }}>
+                    TEAMS
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[400],
+                      fontSize: windowWidth / 25,
+                      color: colors.secondary,
+                    }}>
+                    Silahkan masuk ke Teams
+                  </Text>
+                </TouchableOpacity>
+                <MyGap jarak={15} />
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Nilai', user)}
+                  style={{
+                    padding: 10,
+                    backgroundColor: colors.secondary,
+                    borderRadius: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Image
+                    source={require('../../assets/penilaian.png')}
+                    style={{
+                      width: '100%',
+                      height: 80,
+                      resizeMode: 'contain',
+                    }}
+                  />
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[600],
+                      fontSize: windowWidth / 15,
+                      color: colors.white,
+                    }}>
+                    PENILAIAN DIRI
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[400],
+                      fontSize: windowWidth / 25,
+                      color: colors.white,
+                    }}>
+                    Laporan Penilaian
+                  </Text>
+                </TouchableOpacity>
+              </>
             )}
-            <MyGap jarak={15} />
-            <TouchableOpacity
-              onPress={() =>
-                Linking.openURL(
-                  'https://play.google.com/store/apps/details?id=com.microsoft.teams&hl=in&gl=US',
-                )
-              }
-              style={{
-                padding: 10,
-                backgroundColor: colors.white,
-                borderRadius: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../assets/team.png')}
-                style={{
-                  width: '100%',
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[600],
-                  fontSize: windowWidth / 15,
-                  color: colors.secondary,
-                }}>
-                TEAMS
-              </Text>
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[400],
-                  fontSize: windowWidth / 25,
-                  color: colors.secondary,
-                }}>
-                Silahkan masuk ke Teams
-              </Text>
-            </TouchableOpacity>
-            <MyGap jarak={15} />
-            <TouchableOpacity
-              style={{
-                padding: 10,
-                backgroundColor: colors.secondary,
-                borderRadius: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={require('../../assets/penilaian.png')}
-                style={{
-                  width: '100%',
-                  height: 80,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[600],
-                  fontSize: windowWidth / 15,
-                  color: colors.white,
-                }}>
-                PENILAIAN DIRI
-              </Text>
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[400],
-                  fontSize: windowWidth / 25,
-                  color: colors.white,
-                }}>
-                Daily or Monthly
-              </Text>
-            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>

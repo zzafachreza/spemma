@@ -25,6 +25,7 @@ import Akses from './Akses';
 import Laporan from './Laporan';
 import Chat from './Chat';
 import Artikel from './Artikel';
+import Nilai from './Nilai';
 
 //
 import MaterialReturn from './MaterialReturn';

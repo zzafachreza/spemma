@@ -241,11 +241,11 @@ export default function Aik({navigation, route}) {
               borderRadius: 10,
             }}>
             <MyPicker
-              value={kirim.jenis_material}
+              value={kirim.shalat}
               onValueChange={val =>
                 setKirim({
                   ...kirim,
-                  jenis_material: val,
+                  shalat: val,
                 })
               }
               iconname="grid-outline"

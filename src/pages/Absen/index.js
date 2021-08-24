@@ -162,66 +162,11 @@ export default function Absen({navigation, route}) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-  const UploadFoto = ({onPress1, onPress2, label, foto}) => {
-    return (
-      <View
-        style={{
-          padding: 10,
-          backgroundColor: colors.white,
-          marginVertical: 10,
-          borderWidth: 1,
-          borderRadius: 10,
-          borderColor: colors.border,
-          elevation: 2,
-        }}>
-        <Text
-          style={{
-            fontFamily: fonts.secondary[600],
-            color: colors.black,
-          }}>
-          {label}
-        </Text>
-        <Image
-          source={{
-            uri: kirim.foto,
-          }}
-          style={{
-            width: '100%',
-            aspectRatio: 2,
-          }}
-          resizeMode="center"
-        />
-        <View
-          style={{
-            flexDirection: 'row',
-          }}>
-          <View
-            style={{
-              flex: 1,
-              paddingRight: 5,
-            }}>
-            <MyButton
-              onPress={onPress1}
-              colorText={colors.black}
-              title="KAMERA"
-              warna={colors.border}
-            />
-          </View>
-          <View
-            style={{
-              flex: 1,
-              paddingLeft: 5,
-            }}>
-            <MyButton
-              onPress={onPress2}
-              title="GALLERY"
-              warna={colors.secondary}
-            />
-          </View>
-        </View>
-      </View>
-    );
-  };
+  useEffect(() => {
+    Geolocation.getCurrentPosition(position => {
+      console.log(JSON.stringify(position));
+    });
+  }, []);
 
   return (
     <SafeAreaView
